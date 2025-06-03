@@ -75,6 +75,31 @@ public class Main {
         amount.setBounds(90,130,400,20);
         conteiner.add(amount);
         
+        //Label Auxiliar
+        JLabel label_auxiliar = new JLabel ();
+        label_auxiliar.setFont(new Font("Arial",Font.PLAIN,12));
+        label_auxiliar.setBounds(620,50,80,20);
+        conteiner.add(label_auxiliar);
+        
+        TextField aux = new TextField(500);
+        aux.setFont(new Font("Arial",Font.PLAIN,12));
+        aux.setBounds(700,50,200,20);
+        aux.setVisible(false);
+        conteiner.add(aux);
+        
+        //Label Auxiliar2
+        JLabel label_auxiliar2 = new JLabel ();
+        label_auxiliar2.setFont(new Font("Arial",Font.PLAIN,12));
+        label_auxiliar2.setBounds(620,90,80,20);
+        conteiner.add(label_auxiliar2);
+        
+        TextField aux2 = new TextField(500);
+        aux2.setFont(new Font("Arial",Font.PLAIN,12));
+        aux2.setBounds(700,90,200,20);
+        aux2.setVisible(false);
+        conteiner.add(aux2);
+        
+        
         //Alert
         JLabel alert = new JLabel ();
         alert.setFont(new Font("Arial",Font.PLAIN,12));
@@ -100,12 +125,12 @@ public class Main {
         
         JButton button4 =new JButton("Atualizar Produto");
         button4.setFont(new Font("Arial",Font.PLAIN,12));
-        button4.setBounds(120,200,150,40);
+        button4.setBounds(600,200,150,40);
         conteiner.add(button4);
         
         JButton button5 =new JButton("Deletar Produto");
         button5.setFont(new Font("Arial",Font.PLAIN,12));
-        button5.setBounds(120,200,150,40);
+        button5.setBounds(760,200,150,40);
         conteiner.add(button5);
         
         TextField display = new TextField(10000);
@@ -186,8 +211,49 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 
                 //Receber escolha, id e new value e atualizar
+                label_auxiliar.setText("ID: ");
+                aux.setVisible(true);
+                
+                label_auxiliar2.setText("Escolha: ");
+                aux2.setVisible(true);
+                
+                String id = aux.getText();
+                String escolha = aux2.getText();
+                String dado = "";
+                
+                int convert_escolha = Integer.parseInt(escolha);
+                
+                // Variáveis para armazenar os dados convertidos
 
-            }
+                switch (convert_escolha) {
+                    case 1:
+                        // Quando escolha for 1, obtém o texto do campo 'name' como String
+                        dado = name.getText();  // Texto do campo name
+                        cursor.updateDate(convert_escolha,Integer.parseInt(id) ,dado);
+                        System.out.println("Nome: " + dado);
+                        break;
+
+                    case 2:
+                        dado = price.getText();  // Texto do campo price
+               
+                        cursor.updateDate(convert_escolha,Integer.parseInt(id) ,dado);
+                        System.out.println("Preço: " + price);
+
+                        break;
+
+                    case 3:
+                        dado = amount.getText();  // Texto do campo amount
+                        
+                        cursor.updateDate(convert_escolha,Integer.parseInt(id) ,dado);
+                        System.out.println("Quantidade: " + amount);
+
+                        break;
+
+                    default:
+                        System.out.println("Escolha inválida.");
+                        break;
+                    }
+                }
         });
         
         //delete
